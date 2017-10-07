@@ -1,6 +1,6 @@
 package com.skilldistillery.jets;
 
-public class Pilot extends PilotLounge {
+public class Pilot{
 	//FIELDS
 	private String name;
 	
@@ -12,13 +12,18 @@ public class Pilot extends PilotLounge {
 		this.name = name;
 	}
 
-	
 	//Getter
 	public String getName() {
 		return name;
 	}
 	
+	void createPilots() {
+		
+	}
 
+	public String toString() {
+		return name;
+	}
 	
 
 }

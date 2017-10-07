@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Hangar {
 	private Jets jets[];
+	private Pilot pilots[];
 	int space = 5;
 	Scanner sc = new Scanner(System.in);
 
@@ -17,11 +18,14 @@ public class Hangar {
 
 	public Hangar() {
 		jets = new Jets[10];
-		jets[0] = new Jets(439, 800, "Warthog", null);
-		jets[1] = new Jets(2200, 3355, "Black Bird", null);
-		jets[2] = new Jets(1498, 1839, "Raptor", null);
-		jets[3] = new Jets(1544, 1841, "Tomcat", null);
-		jets[4] = new Jets(1305, 2113, "Chengdu J-20", null);
+//		pilots = new Pilot[10];
+//		PilotLounge pl = new PilotLounge();
+		
+		jets[0] = new Jets(439, 800, "Warthog", 33_000_000, new Pilot("David"));
+		jets[1] = new Jets(2200, 3355, "Black Bird", 18_000_000, null);
+		jets[2] = new Jets(1498, 1839, "Raptor",150_000_000, null);
+		jets[3] = new Jets(1544, 1841, "Tomcat", 38_000_000, null);
+		jets[4] = new Jets(1305, 2113, "Chengdu J-20", 110_000_000, null);
 	}
 
 	public void displayOptions() {
@@ -71,9 +75,13 @@ public class Hangar {
 		sc.nextLine();
 		System.out.print("Enter the jet's name: ");
 		String newName = sc.nextLine();
+		System.out.print("Enter the price: ");
+		int price = sc.nextInt();
+		sc.nextLine();
 		System.out.print("Enter the pilot's name: ");
 		String pilotName = sc.nextLine();
-		Jets j = new Jets(newSpeed, newRange, newName);
+		Pilot p = new Pilot(pilotName);
+		Jets j = new Jets(newSpeed, newRange, newName, price, p);
 		return j;
 	}
 
@@ -116,5 +124,15 @@ public class Hangar {
 			}
 		}
 		return longest;
+	}
+	public void createPilots() {
+		Pilot p[] = new Pilot[10];
+		for (Pilot pilot : p) {
+			pilot = new Pilot("David");
+			pilot = new Pilot("Dan");
+			pilot = new Pilot("Blake");
+			pilot = new Pilot("Adam");
+			pilot = new Pilot("Ben");
+		}
 	}
 }

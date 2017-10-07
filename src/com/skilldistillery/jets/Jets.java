@@ -4,13 +4,14 @@ import java.util.Scanner;
 
 public class Jets{
 	// Fields
-	private Integer jetSpeed;
-	private Integer jetRange;
-	private String jetName;
+	private int jetSpeed;
+	private int jetRange;
+	private String jetModel;
 	private Pilot pilot;
+	private int price;
 	Scanner sc = new Scanner(System.in);
 
-	// User Story #1 There is a menu with 5 otions:
+	// User Story #1 There is a menu with 5 options:
 	// 1. List fleet
 	// 2. View fastest jet
 	// 3. View jet with longest range
@@ -20,20 +21,22 @@ public class Jets{
 	// CONSTRUCTORS
 
 	public Jets() {
-		this(0,0,null,null);
+		this(0,0,null,0,null);
 	}
 
-	public Jets(Integer jetSpeed, Integer jetRange, String jetName) {
-		this(jetSpeed, jetRange, jetName, null);
+	public Jets(int jetSpeed, int jetRange, String jetModel, int price) {
+		this(jetSpeed, jetRange, jetModel, price, null);
 		this.jetSpeed = jetSpeed;
 		this.jetRange = jetRange;
-		this.jetName = jetName;
+		this.jetModel = jetModel;
+		this.price = price;
 	}
 
-	public Jets(int jetSpeed, int jetRange, String jetName, Pilot pilot) {
+	public Jets(int jetSpeed, int jetRange, String jetModel, int price, Pilot pilot) {
 		this.jetSpeed = jetSpeed;
 		this.jetRange = jetRange;
-		this.jetName = jetName;
+		this.jetModel = jetModel;
+		this.price = price;
 		this.pilot = pilot;
 	}
 
@@ -47,8 +50,8 @@ public class Jets{
 		return jetRange;
 	}
 
-	public String getJetName() {
-		return jetName;
+	public String getJetModel() {
+		return jetModel;
 	}
 
 	public Pilot getPilot() {
@@ -56,7 +59,7 @@ public class Jets{
 	}
 	
 	public String toString() {
-		return (jetName + ": Top speed : " + jetSpeed + " MPH. Range: " + jetRange + " miles. Pilot: " + pilot + ".\n");
+		return (jetModel + ": Price: " + price + " USD. Top speed : " + jetSpeed + " MPH. Range: " + jetRange + " miles. Pilot: " + pilot + ".\n");
 		
 	}
 	
