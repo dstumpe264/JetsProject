@@ -62,6 +62,7 @@ public class Jets{
 	
 
 
+
 	// User Story #2 List fleet prints out the model, speed, range, and
 	// price of each jet. (There must be at least 5 jets stored when the program
 	// starts).

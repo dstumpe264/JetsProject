@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Hangar {
 	private Jets jets[];
-	// private PilotLounge pl = new PilotLounge();
+	int space = 5;
 	Scanner sc = new Scanner(System.in);
 
 	public void printFleet() {
@@ -16,7 +16,6 @@ public class Hangar {
 	}
 
 	public Hangar() {
-		// Pilot pilots = new Pilot();
 		jets = new Jets[10];
 		jets[0] = new Jets(439, 800, "Warthog", null);
 		jets[1] = new Jets(2200, 3355, "Black Bird", null);
@@ -26,8 +25,6 @@ public class Hangar {
 	}
 
 	public void displayOptions() {
-		int largest = 0;
-		int index = 0;
 		do {
 			System.out.println("What would you like to do?");
 			System.out.println("1: List Fleet");
@@ -40,25 +37,14 @@ public class Hangar {
 
 			if (option == 1) {
 				this.printFleet();
-			} else if (option == 2) {
-				for (int i = 0; i < jets.length; i++) {
-					if (jets[i].getJetSpeed() >= largest) {
-						largest = jets[i].getJetSpeed();
-						index = i;
-						break;
-					}
-				}
-				System.out.println("The fastest jet in the fleet is the " + jets[index]);
-			} else if (option == 3) {
-				for (int i = 0; i < jets.length; i++) {
-					if (jets[i].getJetRange() >= largest) {
-						largest = jets[i].getJetRange();
-						index = i;
-						break;
-					}
-				}
-				System.out.println("The fastest jet in the fleet is the " + jets[index]);
-			} else if (option == 4) {
+			} 
+			else if (option == 2) {
+				System.out.println("The fastest jet is " + fastestJet());
+			} 
+			else if (option == 3) {
+				System.out.println("The jet with the longest range in the fleet is the " + longestJet());
+			} 
+			else if (option == 4) {
 				char c;
 				do {
 					addJet(newJet());
@@ -71,13 +57,13 @@ public class Hangar {
 			} else if (option == 5) {
 				System.out.println("Have a great day!");
 				System.exit(0);
-			} 
+			}
 		} while (true);
 	}
 
 	public Jets newJet() {
-		boolean added = false;
-		System.out.println("Enter a new jet. \nReminder there is only space for 10 jets in the hangar.");
+		System.out.println(
+				"Enter a new jet. \nReminder there are only " + space + " more spaces(s) available in the hangar.");
 		System.out.print("Enter the jet's top speed: ");
 		int newSpeed = sc.nextInt();
 		System.out.print("Enter the jet's range: ");
@@ -91,16 +77,44 @@ public class Hangar {
 		return j;
 	}
 
-	public boolean addJet(Jets j) {
-		boolean added = false;
+	public void addJet(Jets j) {
 		for (int i = 0; i < jets.length; i++) {
 			if (jets[i] == null) {
 				jets[i] = j;
 				System.out.print("New jet created: " + jets[i]);
-				added = true;
+				System.out.println("Space remaining: " + --space);
 				break;
 			}
+			if (space == 0) {
+				System.out.println("No more space in hangar.");
+			}
 		}
-		return added;
+	}
+
+	public Jets fastestJet() {
+		int largest = jets[0].getJetSpeed();
+		Jets fastest = jets[0];
+		for (int i = 0; i < jets.length; i++) {
+			if (jets[i] != null) {
+				if (jets[i].getJetSpeed() > largest) {
+					largest = jets[i].getJetSpeed();
+					fastest = jets[i];
+				}
+			}
+		}
+		return fastest;
+	}
+	public Jets longestJet() {
+		int largest = jets[0].getJetRange();
+		Jets longest = jets[0];
+		for (int i = 0; i < jets.length; i++) {
+			if (jets[i] != null) {
+				if (jets[i].getJetRange() > largest) {
+					largest = jets[i].getJetRange();
+					longest = jets[i];
+				}
+			}
+		}
+		return longest;
 	}
 }
