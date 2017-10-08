@@ -2,18 +2,16 @@ package com.skilldistillery.jets;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class JetTests {
 
-	@Test
-	public void fill_PilotLounge_with_pilots() {
-		PilotLounge pl = new PilotLounge();
+	@Before
+	public void setUp() {
+		Jets j = new Jets(0, 0, null, 0, null);
+		Pilot p = new Pilot("J");
 	}
-	
-	public void test_option2_displayOptions(){
-		
-		
-	}
-
 }
+
+

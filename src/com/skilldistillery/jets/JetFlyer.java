@@ -3,7 +3,6 @@ public class JetFlyer {
 
 	public static void main(String[] args) {
 		Hangar hangar = new Hangar();
-		PilotLounge pl = new PilotLounge();
 		hangar.displayOptions();		
 	}
 

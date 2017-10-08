@@ -3,33 +3,27 @@ package com.skilldistillery.jets;
 import java.util.Scanner;
 
 public class Hangar {
+	// Fields
 	private Jets jets[];
-	private Pilot pilots[];
 	int space = 5;
 	Scanner sc = new Scanner(System.in);
 
-	public void printFleet() {
-		for (Jets jets : jets) {
-			if (jets != null) {
-				System.out.println(jets);
-			}
-		}
-	}
-
+	// Constructor
 	public Hangar() {
 		jets = new Jets[10];
-//		pilots = new Pilot[10];
-//		PilotLounge pl = new PilotLounge();
-		
-		jets[0] = new Jets(439, 800, "Warthog", 33_000_000, new Pilot("David"));
+		jets[0] = new Jets(439, 800, "Warthog", 33_000_000, new Pilot());
 		jets[1] = new Jets(2200, 3355, "Black Bird", 18_000_000, null);
-		jets[2] = new Jets(1498, 1839, "Raptor",150_000_000, null);
+		jets[2] = new Jets(1498, 1839, "Raptor", 150_000_000, null);
 		jets[3] = new Jets(1544, 1841, "Tomcat", 38_000_000, null);
 		jets[4] = new Jets(1305, 2113, "Chengdu J-20", 110_000_000, null);
 	}
 
+	// Methods
+
+	// Method to display the users options and perform action he chooses.
 	public void displayOptions() {
 		do {
+			// Text user interface
 			System.out.println("What would you like to do?");
 			System.out.println("1: List Fleet");
 			System.out.println("2: View Fastest Jet");
@@ -39,16 +33,19 @@ public class Hangar {
 			System.out.print("Enter 1-5: ");
 			int option = sc.nextInt();
 
+			// Option 1 allows the user to view all aircraft in the hangar
 			if (option == 1) {
 				this.printFleet();
-			} 
-			else if (option == 2) {
+				// Option 2 allows user to view the fastest jet in the fleet and all it's
+				// information.
+			} else if (option == 2) {
 				System.out.println("The fastest jet is " + fastestJet());
-			} 
-			else if (option == 3) {
+				// Option 3 allows user to view the jet with the longest range and all it's
+				// information
+			} else if (option == 3) {
 				System.out.println("The jet with the longest range in the fleet is the " + longestJet());
-			} 
-			else if (option == 4) {
+				// Option 4 allows the user to add a new jet to the fleet.
+			} else if (option == 4) {
 				char c;
 				do {
 					addJet(newJet());
@@ -58,6 +55,7 @@ public class Hangar {
 				} while (c == 'y' || c == 'Y');
 				System.out.println();
 				printFleet();
+				// option 5 quits the program.
 			} else if (option == 5) {
 				System.out.println("Have a great day!");
 				System.exit(0);
@@ -65,6 +63,7 @@ public class Hangar {
 		} while (true);
 	}
 
+	// newJet() constructs a jet under the user's specifications
 	public Jets newJet() {
 		System.out.println(
 				"Enter a new jet. \nReminder there are only " + space + " more spaces(s) available in the hangar.");
@@ -85,6 +84,7 @@ public class Hangar {
 		return j;
 	}
 
+	// addJet() adds the jet created to the fleet.
 	public void addJet(Jets j) {
 		for (int i = 0; i < jets.length; i++) {
 			if (jets[i] == null) {
@@ -99,6 +99,7 @@ public class Hangar {
 		}
 	}
 
+	// method called in option 2 to display the fastest jet
 	public Jets fastestJet() {
 		int largest = jets[0].getJetSpeed();
 		Jets fastest = jets[0];
@@ -112,6 +113,8 @@ public class Hangar {
 		}
 		return fastest;
 	}
+
+	// method in option 3 to display the jet with the longest range
 	public Jets longestJet() {
 		int largest = jets[0].getJetRange();
 		Jets longest = jets[0];
@@ -125,14 +128,12 @@ public class Hangar {
 		}
 		return longest;
 	}
-	public void createPilots() {
-		Pilot p[] = new Pilot[10];
-		for (Pilot pilot : p) {
-			pilot = new Pilot("David");
-			pilot = new Pilot("Dan");
-			pilot = new Pilot("Blake");
-			pilot = new Pilot("Adam");
-			pilot = new Pilot("Ben");
+
+	public void printFleet() {
+		for (Jets jets : jets) {
+			if (jets != null) {
+				System.out.println(jets);
+			}
 		}
 	}
 }

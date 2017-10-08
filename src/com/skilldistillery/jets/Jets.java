@@ -7,7 +7,7 @@ public class Jets{
 	private int jetSpeed;
 	private int jetRange;
 	private String jetModel;
-	private Pilot pilot;
+	private Pilot pilot = new Pilot();
 	private int price;
 	Scanner sc = new Scanner(System.in);
 
@@ -21,7 +21,7 @@ public class Jets{
 	// CONSTRUCTORS
 
 	public Jets() {
-		this(0,0,null,0,null);
+		pilot.randomPilot();
 	}
 
 	public Jets(int jetSpeed, int jetRange, String jetModel, int price) {
@@ -30,6 +30,7 @@ public class Jets{
 		this.jetRange = jetRange;
 		this.jetModel = jetModel;
 		this.price = price;
+		this.pilot.randomPilot();
 	}
 
 	public Jets(int jetSpeed, int jetRange, String jetModel, int price, Pilot pilot) {
@@ -37,7 +38,7 @@ public class Jets{
 		this.jetRange = jetRange;
 		this.jetModel = jetModel;
 		this.price = price;
-		this.pilot = pilot;
+		this.pilot.randomPilot();
 	}
 
 	// Getters
