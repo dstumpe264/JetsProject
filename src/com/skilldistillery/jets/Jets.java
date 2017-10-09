@@ -59,6 +59,11 @@ public class Jets{
 		return pilot;
 	}
 	
+	
+	public void setPilot(Pilot pilot) {
+		this.pilot = pilot;
+	}
+
 	public String toString() {
 		return (jetModel + ": Price: " + price + " USD. Top speed : " + jetSpeed + " MPH. Range: " + jetRange + " miles. Pilot: " + pilot + ".\n");
 		

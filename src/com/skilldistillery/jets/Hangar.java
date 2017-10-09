@@ -11,11 +11,11 @@ public class Hangar {
 	// Constructor
 	public Hangar() {
 		jets = new Jets[10];
-		jets[0] = new Jets(439, 800, "Warthog", 33_000_000, new Pilot());
-		jets[1] = new Jets(2200, 3355, "Black Bird", 18_000_000, null);
-		jets[2] = new Jets(1498, 1839, "Raptor", 150_000_000, null);
-		jets[3] = new Jets(1544, 1841, "Tomcat", 38_000_000, null);
-		jets[4] = new Jets(1305, 2113, "Chengdu J-20", 110_000_000, null);
+		jets[0] = new Jets(439, 800, "Blue Falcon", 33_000_000);
+		jets[1] = new Jets(2200, 3355, "FUBAR", 18_000_000);
+		jets[2] = new Jets(1498, 1839, "Raptor", 150_000_000);
+		jets[3] = new Jets(1544, 1841, "Tomcat", 38_000_000);
+		jets[4] = new Jets(1305, 2113, "Drogon", 110_000_000);
 	}
 
 	// Methods
@@ -29,8 +29,9 @@ public class Hangar {
 			System.out.println("2: View Fastest Jet");
 			System.out.println("3: View jet with longest range");
 			System.out.println("4: Add Jet");
-			System.out.println("5: Quit");
-			System.out.print("Enter 1-5: ");
+			System.out.println("5: Hire a new Pilot");
+			System.out.println("6: Quit");
+			System.out.print("Enter 1-6: ");
 			int option = sc.nextInt();
 
 			// Option 1 allows the user to view all aircraft in the hangar
@@ -56,7 +57,19 @@ public class Hangar {
 				System.out.println();
 				printFleet();
 				// option 5 quits the program.
-			} else if (option == 5) {
+			} else if (option ==5) {
+				System.out.print("Pilot's name? ");
+				sc.nextLine();
+				Pilot newPilot = new Pilot(sc.nextLine());
+				printFleet();
+				System.out.println("Which jet will he be flying? ");
+				System.out.print("Don't enter a number not listed. Enter the number of the jet. ");
+				int jetI = sc.nextInt();
+				jets[jetI-1].setPilot(newPilot);
+				System.out.println(newPilot.getName() + " has been added to jet " + jets[jetI-1].getJetModel());
+				
+			
+			} else if (option == 6) {
 				System.out.println("Have a great day!");
 				System.exit(0);
 			}
@@ -77,10 +90,7 @@ public class Hangar {
 		System.out.print("Enter the price: ");
 		int price = sc.nextInt();
 		sc.nextLine();
-		System.out.print("Enter the pilot's name: ");
-		String pilotName = sc.nextLine();
-		Pilot p = new Pilot(pilotName);
-		Jets j = new Jets(newSpeed, newRange, newName, price, p);
+		Jets j = new Jets(newSpeed, newRange, newName, price);
 		return j;
 	}
 
@@ -130,9 +140,11 @@ public class Hangar {
 	}
 
 	public void printFleet() {
+		int i = 0;
 		for (Jets jets : jets) {
+			i++;
 			if (jets != null) {
-				System.out.println(jets);
+				System.out.println(i + ":" + jets);
 			}
 		}
 	}

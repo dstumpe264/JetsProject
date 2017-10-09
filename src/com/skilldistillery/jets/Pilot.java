@@ -1,11 +1,11 @@
 package com.skilldistillery.jets;
 
-public class Pilot{
-	//FIELDS
+public class Pilot {
+	// FIELDS
 	private String name;
-	String names[] = {"David","Dan","Ben","Blake","Adam"};
-	
-	//CONSTRUCTORS
+	String names[] = { "Kylar Stern", "Durzo Blint", "Azoth", "Acaelus Thorne", "Doll Girl" };
+
+	// CONSTRUCTORS
 	public Pilot() {
 	}
 
@@ -13,19 +13,25 @@ public class Pilot{
 		this.name = name;
 	}
 
-	//Getter
+	// Getter
 	public String getName() {
 		return name;
 	}
-	
+
 	public String toString() {
 		return name;
 	}
 
 	public void randomPilot() {
-		int randomNumber = (int)(Math.random()*names.length);	
-		this.name = names[randomNumber];
+		boolean nameChanged = false;
+		do {
+			int randomNumber = (int) (Math.random() * names.length);
+			if (names[randomNumber] != null) {
+				this.name = names[randomNumber];
+				names[randomNumber] = null;
+				nameChanged = true;
+			}
+		} while (nameChanged == false);
 	}
-	
 
 }
